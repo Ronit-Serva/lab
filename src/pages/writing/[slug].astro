@@ -1,0 +1,12 @@
+---
+import { getCollection, render } from 'astro:content';
+import ReadingLayout from '../../layouts/ReadingLayout.astro';
+import { allContent, isRoutable } from '../../lib/content';
+export async function getStaticPaths() {
+  await allContent();
+  return (await getCollection('articles')).filter(isRoutable).map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+<ReadingLayout entry={entry} headings={headings}><Content /></ReadingLayout>

@@ -1,0 +1,49 @@
+---
+import { publicContent, href, kindLabels } from '../lib/content';
+const index = (await publicContent()).map(entry => ({ title: 'question' in entry.data ? entry.data.question : entry.data.title, summary: entry.data.summary, topics: entry.data.topics, kind: kindLabels[entry.collection], searchText: `${entry.id} ${entry.body || ''}`, href: href(entry) }));
+---
+<dialog id="site-search" class="search-dialog" aria-labelledby="search-title">
+  <div class="dialog-top"><h2 id="search-title">Follow your curiosity.</h2><button type="button" data-search-close aria-label="Close search">×</button></div>
+  <label for="site-query" class="eyebrow">Search the lab</label>
+  <input id="site-query" type="search" placeholder="Try trust, handwriting, finance…" autocomplete="off" />
+  <p data-search-count role="status" class="result-count"></p>
+  <div data-search-results class="search-results"></div>
+  <p class="search-hint">Escape to close · <a href="/explore/">Browse all investigations ↗</a></p>
+</dialog>
+<script type="application/json" id="search-index" set:html={JSON.stringify(index).replace(/</g, '\u003c')} />
+<script>
+  type SearchEntry = { title: string; summary: string; topics: string[]; kind: string; searchText: string; href: string };
+  const dialog = document.querySelector<HTMLDialogElement>('#site-search')!;
+  const input = document.querySelector<HTMLInputElement>('#site-query')!;
+  const results = document.querySelector<HTMLElement>('[data-search-results]')!;
+  const count = document.querySelector<HTMLElement>('[data-search-count]')!;
+  const entries: SearchEntry[] = JSON.parse(document.querySelector('#search-index')!.textContent!);
+  const render = () => {
+    const terms = input.value.trim().toLowerCase().split(/\s+/);
+    const matches = entries.filter(entry => terms.every(term => `${entry.title} ${entry.summary} ${entry.topics.join(' ')} ${entry.kind} ${entry.searchText}`.toLowerCase().includes(term)));
+    results.replaceChildren();
+    count.textContent = `${matches.length} ${matches.length === 1 ? 'result' : 'results'}`;
+    if (!matches.length) {
+      const message = document.createElement('p');
+      message.textContent = 'No matches yet. Try a broader question or another topic.';
+      results.append(message);
+    }
+    matches.forEach(entry => {
+      const link = document.createElement('a');
+      link.href = entry.href;
+      const meta = document.createElement('span'); meta.className = 'eyebrow'; meta.textContent = entry.kind;
+      const title = document.createElement('strong'); title.textContent = `${entry.title} ↗`;
+      const summary = document.createElement('span'); summary.textContent = entry.summary;
+      link.append(meta, title, summary); results.append(link);
+    });
+  };
+  const open = () => { if (!dialog.open) { dialog.showModal(); render(); input.focus(); } };
+  document.querySelectorAll<HTMLButtonElement>('[data-search-open]').forEach(button => { button.hidden = false; button.addEventListener('click', open); });
+  document.querySelector('[data-search-close]')!.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { event.preventDefault(); dialog.close(); }
+  });
+  dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+  input.addEventListener('input', render);
+  document.addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); open(); } });
+</script>

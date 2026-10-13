@@ -1,0 +1,10 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ContentRow from '../../components/ContentRow.astro';
+import Filters from '../../components/Filters.astro';
+import { publicContent } from '../../lib/content';
+const entries = await publicContent('projects');
+const topics = [...new Set(entries.flatMap(e => e.data.topics))];
+const statuses = [...new Set(entries.map(e => 'status' in e.data ? e.data.status : ''))];
+---
+<PageLayout title="Projects" description="Built work, a recognition pipeline in development, and a proposed agent-payment architecture—with the thinking behind each."><section class="page-intro dot-grid"><div class="container"><p class="eyebrow">Projects / Ideas meet the real world</p><h1>Thinking is a start.<br /><em>Building asks more.</em></h1><p class="lead">Problems I’ve turned into software, experiments I’m developing, and systems I’m still designing. Each has its own stage—and its own unfinished questions.</p></div></section><section class="container collection-section" aria-label="Projects"><Filters topics={topics} statuses={statuses} noun="projects" />{entries.map((entry, i) => <ContentRow entry={entry} index={i} />)}<div class="empty-state" hidden data-filter-empty><h2>No projects match those filters.</h2><p>Try another status or reset the filters.</p></div></section></PageLayout>

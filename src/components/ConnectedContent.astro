@@ -1,0 +1,6 @@
+---
+import { connections, href, kindLabels, type Entry } from '../lib/content';
+interface Props { entry: Entry; }
+const items = await connections(Astro.props.entry);
+---
+{items.length > 0 && <section class="connected-content" aria-labelledby="connected-heading"><p class="eyebrow">Keep following the thread</p><h2 id="connected-heading">Connected to</h2>{items.map(({ entry, reason }) => <a href={href(entry)} class="connected-item"><span class="eyebrow">{kindLabels[entry.collection]}</span><h3>{entry.data.title} <span aria-hidden="true">↗</span></h3><p>{reason}</p></a>)}</section>}

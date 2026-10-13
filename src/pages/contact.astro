@@ -1,0 +1,6 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import EditorialLink from '../components/EditorialLink.astro';
+import { site } from '../lib/site';
+---
+<PageLayout title="Let’s talk" description="Connect with Ronit Serva to compare notes, question an idea or explore a difficult problem together."><section class="page-intro dot-grid contact-intro"><div class="container"><p class="eyebrow">Contact / A conversation can change a question</p><h1>Thinking about<br /><em>something difficult?</em></h1><p class="lead">I’d like to hear about it. Whether you have a different perspective, a question about the work, or a problem we could explore together—let’s compare notes.</p><EditorialLink href={site.linkedin} angled>Connect on LinkedIn</EditorialLink></div></section><div class="container contact-note"><span class="small-cross" aria-hidden="true">+</span><p>AI, financial systems, trustworthy autonomy—or a good question from somewhere entirely different.</p></div></PageLayout>

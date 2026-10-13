@@ -1,0 +1,40 @@
+---
+interface Props { topics: string[]; statuses: string[]; noun: string; }
+const { topics, statuses, noun } = Astro.props;
+---
+<form class="filters" data-filters hidden role="search" aria-label={`Filter ${noun}`}>
+  <div class="filter-search"><label for="content-query">Search {noun}</label><input id="content-query" type="search" name="query" placeholder="Follow a question…" autocomplete="off" /></div>
+  <div><label for="content-topic">Theme</label><select id="content-topic" name="topic"><option value="">All themes</option>{topics.map(topic => <option>{topic}</option>)}</select></div>
+  <div><label for="content-status">Status</label><select id="content-status" name="status"><option value="">All statuses</option>{statuses.map(status => <option>{status}</option>)}</select></div>
+  <button type="reset" class="reset-filter">Reset ↗</button>
+</form>
+<p data-result-count class="result-count" role="status" hidden></p>
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-filters]');
+  if (form) {
+    form.hidden = false;
+    const rows = [...document.querySelectorAll<HTMLElement>('[data-content-row]')];
+    const count = document.querySelector<HTMLElement>('[data-result-count]')!;
+    const empty = document.querySelector<HTMLElement>('[data-filter-empty]');
+    const update = () => {
+      const values = new FormData(form);
+      const query = String(values.get('query') || '').trim().toLowerCase();
+      const topic = String(values.get('topic') || '');
+      const status = String(values.get('status') || '');
+      let found = 0;
+      for (const row of rows) {
+        const topics: string[] = JSON.parse(row.dataset.topics || '[]');
+        row.hidden = !(query.split(/\s+/).every(word => row.dataset.search?.includes(word)) && (!topic || topics.includes(topic)) && (!status || row.dataset.status === status));
+        if (!row.hidden) found++;
+      }
+      count.hidden = false;
+      count.textContent = `${found} ${found === 1 ? 'entry' : 'entries'}`;
+      if (empty) empty.hidden = found !== 0;
+    };
+    form.addEventListener('submit', event => event.preventDefault());
+    form.addEventListener('input', update);
+    form.addEventListener('change', update);
+    form.addEventListener('reset', () => setTimeout(update, 0));
+    update();
+  }
+</script>

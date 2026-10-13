@@ -1,0 +1,12 @@
+---
+import { href, kindLabels, formatDate, type Entry } from '../lib/content';
+interface Props { entry: Entry; index?: number; question?: boolean; }
+const { entry, index, question = false } = Astro.props;
+const data = entry.data;
+const title = question && 'question' in data ? data.question : data.title;
+const status = 'status' in data ? data.status : data.type;
+---
+<article class="content-row" data-content-row data-search={[title, data.summary, ...data.topics, status].join(' ').toLowerCase()} data-topics={JSON.stringify(data.topics)} data-status={status}>
+  <div class="row-meta"><span class="row-number">{index !== undefined ? String(index + 1).padStart(2, '0') : kindLabels[entry.collection]}</span><span class="status"><span class="status-dot" aria-hidden="true"></span>{status}</span>{'publishedAt' in data && data.publishedAt && <time class="row-date" datetime={data.publishedAt}>{formatDate(data.publishedAt)}</time>}</div>
+  <div class="row-main"><h2><a href={href(entry)}>{title}<span aria-hidden="true" class="row-arrow">↗</span></a></h2><p>{data.summary}</p><ul class="topics" aria-label="Topics">{data.topics.map(topic => <li>{topic}</li>)}</ul></div>
+</article>
