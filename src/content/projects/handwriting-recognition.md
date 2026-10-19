@@ -3,9 +3,9 @@ title: Reading handwritten characters
 summary: A ResNet + EMNIST recognition pipeline, with an emphasis on reproducible training and meaningful evaluation.
 status: In development
 topics: [Machine Learning]
-visibility: public
-draft: false
-featured: true
+visibility: private
+draft: true
+featured: false
 order: 2
 stack: [ResNet, EMNIST ByClass, Google Colab]
 related:

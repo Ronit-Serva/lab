@@ -1,5 +1,5 @@
 ---
-title: Personal finance, made clearer
+title: Personal finance management application
 summary: A financial-management framework and web app, prompted by a practical problem close to home.
 status: Built · self-reported
 topics: [Financial Systems]
@@ -8,6 +8,9 @@ draft: false
 featured: true
 order: 1
 related:
+  - collection: investigations
+    id: personal-finance-management
+    reason: The everyday financial-management problem that motivated this application.
   - collection: investigations
     id: agentic-payments-and-trust
     reason: Both explore how financial tools can give people useful capability while preserving control.

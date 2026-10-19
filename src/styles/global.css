@@ -64,8 +64,8 @@ a:hover .arrow, a:focus-visible .arrow { transform: translate(3px, -3px); }
 .editorial-link { display: inline-flex; align-items: center; min-height: 48px; padding: 10px 0; font-size: 14px; }
 .link-visual { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; position: relative; padding-block: 3px 8px; border-bottom: 1px solid var(--color-line); }
 .editorial-link:hover .link-visual { border-color: var(--color-accent-hover); }
-.editorial-link.angled { padding: 24px 0; }
-.editorial-link.angled .link-visual { transform: rotate(-12deg); transform-origin: center; padding-bottom: 10px; min-width: 120px; }
+.hero-links .editorial-link, .contact-intro .editorial-link { padding: 24px 0; }
+.hero-links .link-visual, .contact-intro .link-visual { padding-bottom: 10px; }
 .hero { max-width: 1552px; margin: 8px auto 0; padding-inline: 24px; display: grid; grid-template-columns: 1.75fr 1fr; gap: 32px; }
 .hero-text { min-height: clamp(640px, calc(100svh - 144px), 890px); display: flex; flex-direction: column; justify-content: space-between; padding: 36px clamp(24px, 3vw, 56px) 32px; }
 .hero-intro { display: flex; align-items: center; gap: 12px; }
@@ -73,7 +73,7 @@ a:hover .arrow, a:focus-visible .arrow { transform: translate(3px, -3px); }
 .hero h1 { font-size: clamp(54px, 7.8vw, 120px); line-height: 1.02; letter-spacing: -0.025em; margin-bottom: 48px; }
 .hero-links { display: flex; align-items: center; gap: clamp(32px, 4vw, 72px); padding-left: 6px; }
 .hero-links .editorial-link { font-size: 19px; }
-.hero-links .editorial-link.angled .link-visual { min-width: clamp(100px, 10vw, 160px); }
+.hero-links .editorial-link .link-visual { min-width: clamp(100px, 10vw, 160px); }
 .hero-bottom { display: flex; align-items: end; justify-content: space-between; gap: 24px; font-size: 10px; line-height: 1.8; color: var(--color-text-muted); }
 .hero-bottom p { margin: 0; }
 .hero-bottom a { white-space: nowrap; padding-block: 4px; }
@@ -258,7 +258,7 @@ a:hover .arrow, a:focus-visible .arrow { transform: translate(3px, -3px); }
   .hero-text { padding-inline: 16px; min-height: 610px; }
   .hero-links { gap: 30px; }
   .hero-links .editorial-link { font-size: 16px; }
-  .hero-links .editorial-link.angled .link-visual { min-width: 100px; gap: 16px; }
+  .hero-links .editorial-link .link-visual { min-width: 100px; gap: 16px; }
   .hero-bottom { font-size: 9px; }
   .question-previews { gap: 40px; }
   .reading-grid { grid-template-columns: 180px minmax(0, 1fr); gap: 48px; }
@@ -287,7 +287,7 @@ a:hover .arrow, a:focus-visible .arrow { transform: translate(3px, -3px); }
   .hero h1 { font-size: clamp(46px, 10.9vw, 78px); margin-bottom: 36px; }
   .hero-links { gap: clamp(24px, 6vw, 48px); padding-left: 0; }
   .hero-links .editorial-link { font-size: 14px; }
-  .hero-links .editorial-link.angled .link-visual { min-width: 88px; gap: 12px; }
+  .hero-links .editorial-link .link-visual { min-width: 88px; gap: 12px; }
   .hero-bottom { gap: 16px; font-size: 9px; }
   .hero-photo { align-self: stretch; border-radius: 26px; max-width: 600px; width: 100%; margin-inline: auto; }
   .section-heading { display: block; margin-bottom: 40px; }
@@ -353,7 +353,7 @@ a:hover .arrow, a:focus-visible .arrow { transform: translate(3px, -3px); }
 }
 @media (max-width: 370px) {
   .hero-links { gap: 16px; }
-  .hero-links .editorial-link.angled .link-visual { min-width: 80px; }
+  .hero-links .editorial-link .link-visual { min-width: 80px; }
   .hero h1 { font-size: 41px; }
   .hero-bottom { flex-direction: column; align-items: start; }
   .wordmark-sub { display: none; }
@@ -366,3 +366,9 @@ a:hover .arrow, a:focus-visible .arrow { transform: translate(3px, -3px); }
 .copy-code { display: block; margin-left: auto; padding: 8px; color: var(--color-accent); font-size: 11px; }
 
 .row-date { font-size: 10px; color: var(--color-text-muted); }
+
+/* Keep the longer homepage statement readable within the split hero. */
+.hero h1.hero-tagline { font-size: clamp(42px, 5.2vw, 80px); line-height: 1.08; }
+@media (max-width: 767px) {
+  .hero h1.hero-tagline { font-size: clamp(38px, 9vw, 62px); }
+}

@@ -4,14 +4,14 @@ A static Astro + TypeScript website. Source content is Markdown; the site ships 
 
 ## Run it
 
-Use Node 22.19+ (or a supported newer LTS).
+Run these commands from `lab/` or the workspace root. Use Node 22.19+ (or a supported newer LTS).
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open the local address printed by Astro. `npm run verify` checks TypeScript/content, builds the site, and verifies generated links, anchors, metadata and draft exclusion. `npm run preview` serves the production build. Output is in `dist/`.
+Open the local address printed by Astro. `npm run verify` checks TypeScript/content, builds the site, and verifies generated links, anchors, metadata and draft exclusion. `npm run preview` serves the production build. Output is in `lab/dist/` (or `dist/` when running from `lab/`).
 
 ## Publish content
 
@@ -67,6 +67,6 @@ Copy the private `src/content/articles/writing-template.md` to a new slug, repla
 
 ## Initial content and editorial decisions
 
-The source briefs and original reference remain in the parent directory. Seed entries summarize the supplied profile; they are not new research publications. No article drafts were supplied, so the writing library starts empty. The finance app is explicitly self-reported, handwriting training is unverified, and the agent-payment design remains a concept. No fabricated demos, repositories, outcomes or metrics are included. Trading research awaits its source material. Email, exact location and the inconsistent TKS end date are omitted.
+The source briefs and original reference remain in the parent directory. Seed entries summarize the supplied profile; they are not new research publications. No article drafts were supplied, so the writing library starts empty. The finance app is explicitly self-reported, the handwriting entries are retained as private drafts, and the agent-payment design remains a concept. No fabricated demos, repositories, outcomes or metrics are included. Trading research awaits its source material. Email, exact location and the inconsistent TKS end date are omitted.
 
-Deployment starts owner-private through the Sites plugin. Making it public is a separate owner choice. This website needs no runtime secrets, database or external API.
+Hosted on ChatGPT Sites at https://ronit-research-lab.heartyrook128.chatgpt.site. The canonical origin defaults to this URL; `PUBLIC_SITE_URL` can override it for another host. This website needs no runtime secrets, database or external API.

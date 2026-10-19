@@ -30,6 +30,11 @@ test('drafts are absent from pages, search and sitemap', () => {
   const all = pages.map(page => page.html).join('\n');
   assert.ok(!existsSync(join(root, 'writing/writing-template/index.html')));
   assert.ok(!all.includes('Replace with your article title'));
+  assert.ok(!/handwrit(?:ing|ten)/i.test(all));
+  assert.ok(!existsSync(join(root, 'explore/handwriting-generalization/index.html')));
+  assert.ok(!existsSync(join(root, 'projects/handwriting-recognition/index.html')));
+  assert.ok(!readFileSync(join(root, 'sitemap.xml'), 'utf8').includes('handwriting'));
+  assert.ok(existsSync(join(root, 'explore/personal-finance-management/index.html')));
   assert.ok(!readFileSync(join(root, 'sitemap.xml'), 'utf8').includes('writing-template'));
 });
 test('every page has one primary heading, language, description and working skip target', () => {
@@ -44,7 +49,6 @@ test('every page has one primary heading, language, description and working skip
 });
 test('project claims preserve their documented status and no email is exposed', () => {
   assert.match(readFileSync(join(root, 'projects/agent-payment-architecture/index.html'), 'utf8'), /Concept/);
-  assert.match(readFileSync(join(root, 'projects/handwriting-recognition/index.html'), 'utf8'), /In development/);
   assert.match(readFileSync(join(root, 'projects/personal-finance-app/index.html'), 'utf8'), /Built · self-reported/);
   for (const { html } of pages) assert.ok(!html.includes('ronitkumar.serva@gmail.com'));
 });

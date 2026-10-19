@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
 mkdirSync('qa', { recursive: true });
 const origin = 'http://127.0.0.1:4321';
-const routes = ['/', '/explore/', '/explore/agentic-payments-and-trust/', '/explore/handwriting-generalization/', '/projects/', '/projects/personal-finance-app/', '/projects/handwriting-recognition/', '/projects/agent-payment-architecture/', '/writing/', '/story/', '/contact/'];
+const routes = ['/', '/explore/', '/explore/agentic-payments-and-trust/', '/explore/personal-finance-management/', '/projects/', '/projects/personal-finance-app/', '/projects/agent-payment-architecture/', '/writing/', '/story/', '/contact/'];
 const failures = [];
 const evidence = [];
 try {
@@ -37,7 +37,7 @@ try {
   await page.goto(`${origin}/explore/`);
   await page.locator('#content-query').fill('payments');
   assert.equal(await page.locator('[data-content-row]:visible').count(), 1);
-  await page.locator('#content-topic').selectOption('Machine Learning');
+  await page.locator('#content-topic').selectOption('Financial Systems');
   assert.equal(await page.locator('[data-content-row]:visible').count(), 0);
   assert.ok(await page.locator('[data-filter-empty]').isVisible());
   await page.getByRole('button', { name: 'Reset' }).click();
@@ -46,7 +46,7 @@ try {
   assert.equal(await page.locator('[data-content-row]:visible').count(), 1);
   await page.keyboard.press('Control+k');
   assert.ok(await page.locator('#site-search').isVisible());
-  await page.locator('#site-query').fill('handwriting');
+  await page.locator('#site-query').fill('personal finance');
   assert.equal(await page.locator('[data-search-results] a').count(), 2);
   await page.locator('#site-query').fill('zznonexistent');
   assert.equal(await page.locator('[data-search-results] a').count(), 0);

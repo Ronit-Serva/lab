@@ -4,9 +4,9 @@ question: How do we know a handwriting model really generalizes?
 summary: Looking beyond a single accuracy number to the characters, conditions and failure cases a model struggles with.
 status: Exploring
 topics: [Machine Learning]
-visibility: public
-draft: false
-featured: true
+visibility: private
+draft: true
+featured: false
 order: 2
 openQuestions:
   - How does the model behave on handwriting outside its training distribution?

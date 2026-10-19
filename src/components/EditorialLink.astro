@@ -1,5 +1,5 @@
 ---
-interface Props { href: string; angled?: boolean; class?: string; }
-const { href, angled = false, class: className } = Astro.props;
+interface Props { href: string; class?: string; }
+const { href, class: className } = Astro.props;
 ---
-<a href={href} class:list={['editorial-link', { angled }, className]}><span class="link-visual"><slot /><span class="arrow" aria-hidden="true">↗</span></span></a>
+<a href={href} class:list={['editorial-link', className]}><span class="link-visual"><slot /><span class="arrow" aria-hidden="true">↗</span></span></a>
