@@ -4,7 +4,7 @@ Use this reference when adding pages or reusing the visual design. The Astro pro
 
 ## Visual direction
 
-Warm paper, grainy moving color, sharp diagonal edges, fine horizontal and vertical rules, and generous space. Use the gradient to introduce a page; keep the reading surface quiet. Avoid rounded cards, shadows, dotted backgrounds, serif type, and competing primary actions.
+Deep charcoal surfaces, grainy moving color, sharp diagonal edges, fine horizontal and vertical rules, and generous space. Use the gradient to introduce a page; keep the reading surface quiet. Avoid rounded cards, shadows, dotted backgrounds, serif type, and competing primary actions.
 
 ## Shared source
 
@@ -18,14 +18,14 @@ Warm paper, grainy moving color, sharp diagonal edges, fine horizontal and verti
 
 | Purpose | Value |
 | --- | --- |
-| Page | `#faf9f6` |
-| Raised surface | `#f2f1ed` |
-| Soft surface | `#efeee8` |
-| Primary text | `#272727` |
-| Supporting text | `#666666` |
-| Rules | `#deddd7` |
-| Accent and focus | `#313131` |
-| Typeface | Locally served Manrope, weights 400, 500, 600 |
+| Page | `#101413` |
+| Raised surface | `#181e1c` |
+| Soft surface | `#202824` |
+| Primary text | `#edf2ef` |
+| Supporting text | `#adb9b2` |
+| Rules | `#35413b` |
+| Accent and focus | `#c9e5d5` |
+| Typeface | Locally served Inter, weights 400, 500, 600 |
 | Body | 18px / 28px; long prose uses 1.75 line height |
 | Introductory copy | 20px / 28px desktop, 18px / 28px mobile |
 | Labels | 14px / 20px, sentence case |
@@ -43,12 +43,12 @@ Warm paper, grainy moving color, sharp diagonal edges, fine horizontal and verti
 - Align the navigation, hero, content frame, and footer to the same outer rails.
 - Give each section a fine horizontal boundary. On desktop, divide metadata from reading content with a vertical rule and 32px of inset. Stack these regions on mobile and remove the vertical rule.
 - Keep paragraph measures below roughly 65 characters even when the surrounding layout is wider.
-- Use the shared muted peach, lilac, and teal gradient with its SVG grain overlay. Animate transforms slowly over 24 seconds, and stop the animation under `prefers-reduced-motion`.
-- Reading introductions use the same gradient at lower opacity. Prose itself stays on the paper background.
+- Use the shared muted copper, violet, and teal gradient with its SVG grain overlay. Animate transforms slowly over 24 seconds, and stop the animation under `prefers-reduced-motion`.
+- Reading introductions use the same gradient at lower opacity. Prose itself stays on the dark background.
 - Keep clear hover, pressed, keyboard focus, current navigation, search, filter, and empty states. Retain semantic headings and real links.
 - Homepage sections reveal once using IntersectionObserver. Content stays visible if JavaScript or the observer is unavailable.
 - Preserve documented project statuses, draft exclusions, citations, and content relationships. Do not invent project results or demos.
 
 ## Reuse
 
-For another page in this site, use `PageLayout`, existing content components, and these shared styles. For a new site, start from the saved personal Site template, replace personal content and branding, and register a new Site identity. Never reuse the original hosting project ID or credentials. Run `npm run verify` after integration and inspect responsive layouts when a browser connection is available.
+For another page in this site, use `PageLayout`, existing content components, and these shared styles. For a new site, copy the layout and styles and replace personal content and branding. Run `npm run verify` after integration and inspect responsive layouts when a browser connection is available.

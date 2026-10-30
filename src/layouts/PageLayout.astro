@@ -1,7 +1,7 @@
 ---
-import '@fontsource/manrope/latin-400.css';
-import '@fontsource/manrope/latin-500.css';
-import '@fontsource/manrope/latin-600.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
 import '../styles/global.css';
 import '../styles/design.css';
 import '../styles/inner.css';
@@ -14,4 +14,4 @@ const { title, description = site.description, noindex = false, home = false } =
 const fullTitle = title ? `${title} — Ronit Serva` : 'Ronit Serva — Projects, research & experiments';
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 ---
-<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#faf9f6" /><meta name="description" content={description} /><meta property="og:title" content={fullTitle} /><meta property="og:description" content={description} /><meta property="og:type" content="website" />{canonical && <><link rel="canonical" href={canonical} /><meta property="og:url" content={canonical} /><meta property="og:image" content={new URL('/social.png', Astro.site).href} /></>}<meta name="twitter:card" content="summary" />{noindex && <meta name="robots" content="noindex, nofollow" />}<link rel="icon" type="image/svg+xml" href="/favicon.svg" /><title>{fullTitle}</title></head><body class:list={['lab-theme', { 'home-page': home, 'inner-page': !home }]}><a href="#main-content" class="skip-link">Skip to content</a><SiteHeader /><main id="main-content" tabindex="-1"><slot /></main><SiteFooter /><Search /></body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#101413" /><meta name="description" content={description} /><meta property="og:title" content={fullTitle} /><meta property="og:description" content={description} /><meta property="og:type" content="website" />{canonical && <><link rel="canonical" href={canonical} /><meta property="og:url" content={canonical} /><meta property="og:image" content={new URL('/social.png', Astro.site).href} /></>}<meta name="twitter:card" content="summary" />{noindex && <meta name="robots" content="noindex, nofollow" />}<link rel="icon" type="image/svg+xml" href="/favicon.svg" /><title>{fullTitle}</title></head><body class:list={['lab-theme', { 'home-page': home, 'inner-page': !home }]}><a href="#main-content" class="skip-link">Skip to content</a><SiteHeader /><main id="main-content" tabindex="-1"><slot /></main><SiteFooter /><Search /></body></html>
