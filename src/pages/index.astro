@@ -1,20 +1,55 @@
 ---
+import '@fontsource/manrope/latin-400.css';
+import '@fontsource/manrope/latin-500.css';
+import '@fontsource/manrope/latin-600.css';
+import '../styles/home.css';
 import { Image } from 'astro:assets';
 import portrait from '../portrait.jpg';
 import PageLayout from '../layouts/PageLayout.astro';
-import EditorialLink from '../components/EditorialLink.astro';
-import ContentRow from '../components/ContentRow.astro';
 import { publicContent, href } from '../lib/content';
-import { site } from '../lib/site';
 const investigations = (await publicContent('investigations')).filter(e => e.data.featured);
 const projects = (await publicContent('projects')).filter(e => e.data.featured);
 const articles = (await publicContent('articles')).slice(0, 3);
 ---
-<PageLayout>
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-text dot-grid"><div class="hero-intro eyebrow"><span class="small-cross" aria-hidden="true">+</span> A mind at work</div><div class="hero-center"><h1 id="hero-title" class="hero-tagline">I explore and solve<br />complex problems<br />with AI, blockchain,<br />and simulations.</h1><div class="hero-links"><EditorialLink href="/projects/">Projects</EditorialLink><EditorialLink href="/writing/">Blogs</EditorialLink><EditorialLink href="/story/">My Story</EditorialLink></div></div><div class="hero-bottom"><p>Computer Science at Ashoka.<br />Exploring the possible with TKS.</p><a href="#questions">Step inside the lab <span aria-hidden="true">↓</span></a></div></div><div class="hero-photo"><Image src={portrait} widths={[420, 640, 960, 1280]} sizes="(max-width: 767px) 92vw, 36vw" alt="Ronit speaking into a microphone at an event, with the original presentation background." loading="eager" fetchpriority="high" format="webp" /></div></section>
-  <section class="section container lab-section" id="questions"><div class="section-heading"><div><p class="eyebrow">01 / The research lab</p><h2>It starts with<br /><em>a question.</em></h2></div><div class="section-intro"><p>I’m Ronit. I study things that puzzle me, build to test what I learn, and keep track of what I still don’t understand.</p><EditorialLink href="/explore/">Explore the lab</EditorialLink></div></div><div class="question-previews">{investigations.map((entry, i) => <article class="question-preview"><div class="preview-meta"><span class="row-number">Q. {String(i + 1).padStart(2, '0')}</span><span class="status"><span class="status-dot" aria-hidden="true"></span>{'status' in entry.data && entry.data.status}</span></div><h3><a href={href(entry)}>{'question' in entry.data && entry.data.question} <span class="arrow" aria-hidden="true">↗</span></a></h3><p>{entry.data.summary}</p><ul class="topics">{entry.data.topics.map(topic => <li>{topic}</li>)}</ul></article>)}</div></section>
-  <section class="section container"><div class="section-heading"><div><p class="eyebrow">02 / From thinking to making</p><h2>On the workbench.</h2></div><EditorialLink href="/projects/">All projects</EditorialLink></div>{projects.map((entry, i) => <ContentRow entry={entry} index={i} />)}</section>
-  <section class="notebook-section dot-grid"><div class="container notebook-inner"><div><p class="eyebrow">03 / Writing to understand</p><h2>A notebook,<br /><em>taking shape.</em></h2></div><div>{articles.length ? articles.map(entry => <ContentRow entry={entry} />) : <><p class="notebook-copy">Research becomes clearer when I try to explain it. This space will hold the deep dives, field notes and build logs that come out of the work.</p><p class="muted">The first pieces are still being prepared.</p></>}<EditorialLink href="/writing/">Visit the notebook</EditorialLink></div></div></section>
-  <section class="section container curiosity-section"><div><p class="eyebrow">04 / Beyond the current experiments</p><h2>Still curious.</h2><p class="muted">A few questions I’m carrying around.</p></div><ul class="curiosity-list">{site.curiosities.map(item => <li><span class="eyebrow">{item.topic}</span>{item.href ? <a href={item.href}>{item.question} <span aria-hidden="true">↗</span></a> : <p>{item.question}</p>}</li>)}</ul></section>
-  <section class="section container home-about"><p class="eyebrow">The person behind the questions</p><h2>Understand deeply.<br /><em>Then build something useful.</em></h2><p>I’m studying Computer Science at Ashoka University and participating in The Knowledge Society. My interests move between AI, financial systems and emerging technologies. What connects them is the desire to turn understanding into something useful.</p><EditorialLink href="/story/">A little more about me</EditorialLink></section>
+<PageLayout home>
+  <section class="home-hero" aria-labelledby="hero-title">
+    <div class="gradient-field" aria-hidden="true"><div class="gradient-colors"></div><div class="gradient-grain"></div></div>
+    <div class="hero-guides" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="home-frame hero-content">
+      <p class="home-kicker"><span class="live-dot" aria-hidden="true"></span> A personal research lab <span class="hero-edition">Ideas in progress / 001</span></p>
+      <h1 id="hero-title">Stay curious.<br />Think deeply.<br /><span>Build something.</span></h1>
+      <div class="hero-description"><p>I’m Ronit. I explore complex problems through AI, blockchain, and simulations — and build to understand them better.</p><a class="home-primary" href="#questions">Explore the lab <span aria-hidden="true">↗</span></a></div>
+      <div class="home-hero-bottom"><span>Computer Science at Ashoka <span class="separator">/</span> The Knowledge Society</span><a href="#questions">A little further down <span aria-hidden="true">↓</span></a></div>
+    </div>
+  </section>
+  <div class="home-frame home-body">
+    <section class="home-section" id="questions" aria-labelledby="questions-title">
+      <div class="home-section-head" data-reveal><p class="home-kicker">01 <span>/</span> Open investigations</p><div><h2 id="questions-title">It starts with a question.</h2><p>Following the questions that don’t have easy answers.</p></div><a class="home-text-link" href="/explore/">All investigations <span aria-hidden="true">↗</span></a></div>
+      <div class="investigation-list">{investigations.map((entry, i) => <article class="investigation" data-reveal><div class="investigation-meta"><span>Q.{String(i + 1).padStart(2, '0')}</span><span class="home-status"><span class="live-dot" aria-hidden="true"></span>{'status' in entry.data && entry.data.status}</span></div><div class="investigation-copy"><h3><a href={href(entry)}>{'question' in entry.data && entry.data.question}<span aria-hidden="true">↗</span></a></h3><p>{entry.data.summary}</p><ul class="home-topics" aria-label="Topics">{entry.data.topics.map(topic => <li>{topic}</li>)}</ul></div></article>)}</div>
+    </section>
+    <section class="home-section work-section" aria-labelledby="work-title">
+      <div class="home-section-head" data-reveal><p class="home-kicker">02 <span>/</span> Selected work</p><div><h2 id="work-title">Thought, put into practice.</h2><p>Experiments in making useful things.</p></div><a class="home-text-link" href="/projects/">All projects <span aria-hidden="true">↗</span></a></div>
+      {projects.map((entry, i) => <article class="home-project" data-reveal><div class="project-drawing" aria-hidden="true"><span class="drawing-label">Fig. {String(i + 1).padStart(2, '0')} / Systems in balance</span><svg viewBox="0 0 480 240" fill="none"><path d="M40 180H440M80 40V210M160 40V210M240 40V210M320 40V210M400 40V210" stroke="currentColor" opacity=".12"/><path d="M80 160L160 120L240 140L320 64L400 88" stroke="currentColor" stroke-width="2"/><path d="M80 180V160M160 180V120M240 180V140M320 180V64M400 180V88" stroke="currentColor" opacity=".4"/>{[[80,160],[160,120],[240,140],[320,64],[400,88]].map(([cx,cy]) => <circle cx={cx} cy={cy} r="4" fill="currentColor" />)}</svg><span class="drawing-caption">A clearer picture of everyday finances.</span></div><div class="home-project-copy"><p class="home-kicker">{'status' in entry.data && entry.data.status}</p><h3><a href={href(entry)}>{entry.data.title}</a></h3><p>{entry.data.summary}</p><a class="home-text-link" href={href(entry)}>Inside the project <span aria-hidden="true">↗</span></a></div></article>)}
+    </section>
+    <section class="home-notebook" data-reveal aria-labelledby="notebook-title"><p class="home-kicker">03 <span>/</span> Field notes</p><div><h2 id="notebook-title">Writing is part<br />of figuring it out.</h2><p>Research notes, build logs, and ideas taking shape. A place to make the thinking visible.</p>{articles.length ? articles.map(entry => <a class="home-article" href={href(entry)}>{entry.data.title} <span aria-hidden="true">↗</span></a>) : <p class="notebook-status"><span class="live-dot" aria-hidden="true"></span> The first pieces are in the works.</p>}<a class="home-text-link" href="/writing/">Visit the notebook <span aria-hidden="true">↗</span></a></div></section>
+    <section class="home-person" data-reveal aria-labelledby="person-title"><div class="home-person-photo"><Image src={portrait} widths={[240, 480, 720]} sizes="(max-width: 767px) 70vw, 240px" alt="Ronit speaking into a microphone at an event." format="webp" loading="lazy" /></div><div><p class="home-kicker">The person behind the questions</p><h2 id="person-title">A mind at work.<br />Always a work in progress.</h2><p>I study Computer Science at Ashoka University and explore emerging technologies with The Knowledge Society. I’m interested in what happens when deep understanding meets the desire to make something useful.</p><a class="home-text-link" href="/story/">A little more about me <span aria-hidden="true">↗</span></a></div></section>
+  </div>
 </PageLayout>
+<script>
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!motion.matches && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('[data-reveal]').forEach(element => {
+      // Never hide content above the fold or in browsers without an observer.
+      if (element.getBoundingClientRect().top > window.innerHeight) element.classList.add('will-reveal');
+      observer.observe(element);
+    });
+  }
+</script>
