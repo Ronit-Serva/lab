@@ -48,7 +48,21 @@ test('every page has one primary heading, language, description and working skip
   }
 });
 test('project claims preserve their documented status and no email is exposed', () => {
-  assert.match(readFileSync(join(root, 'projects/agent-payment-architecture/index.html'), 'utf8'), /Concept/);
-  assert.match(readFileSync(join(root, 'projects/personal-finance-app/index.html'), 'utf8'), /Built · self-reported/);
+  const agent = readFileSync(join(root, 'projects/agent-payment-architecture/index.html'), 'utf8');
+  const finance = readFileSync(join(root, 'projects/personal-finance-app/index.html'), 'utf8');
+  assert.match(agent, /Learning reimplementation/);
+  assert.match(agent, /https:\/\/github.com\/Ronit-Serva\/A2A-x402-extension-reimp/);
+  assert.match(agent, /https:\/\/arxiv.org\/abs\/2507.19550/);
+  assert.match(agent, /local learning prototype/);
+  assert.match(finance, /Live app/);
+  assert.match(finance, /href="https:\/\/serva-aica.web.app\/"/);
   for (const { html } of pages) assert.ok(!html.includes('ronitkumar.serva@gmail.com'));
+});
+test('projects lead the homepage and the published article links to Medium', () => {
+  const home = readFileSync(join(root, 'index.html'), 'utf8');
+  assert.ok(home.indexOf('id="work"') < home.indexOf('id="questions"'));
+  assert.match(home, /href="#work"/);
+  for (const file of ['index.html', 'writing/index.html', 'projects/agent-payment-architecture/index.html']) {
+    assert.match(readFileSync(join(root, file), 'utf8'), /href="https:\/\/medium.com\/@ronitkumar.serva\/how-can-blockchain-be-used-to-design-an-agentic-payment-system-7dffb772e146"/);
+  }
 });

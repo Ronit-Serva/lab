@@ -154,3 +154,12 @@
   .gradient-colors { animation: none; }
   .will-reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* Project destinations stay close to each build, with sketches specific to the work. */
+.home-project-links, .reading-destinations { display: flex; flex-wrap: wrap; gap: 16px 24px; }
+.reading-destinations:not(:empty) { margin-top: 32px; }
+.project-flow { display: grid; grid-template-columns: 1fr 1fr; list-style: none; padding: 0; margin: 32px 0; gap: 0; }
+.project-flow li { border-top: 1px solid currentColor; padding: 16px 12px 24px 0; font-size: 16px; line-height: 24px; }
+.project-flow li:nth-child(odd) { border-right: 1px solid currentColor; }
+.project-flow li:nth-child(even) { padding-left: 16px; }
+.project-flow span { display: block; font-size: 14px; line-height: 20px; margin-bottom: 8px; }

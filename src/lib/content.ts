@@ -3,7 +3,7 @@ export type Kind = 'investigations' | 'projects' | 'articles';
 export type Entry = CollectionEntry<Kind>;
 export const roots: Record<Kind, string> = { investigations: '/explore', projects: '/projects', articles: '/writing' };
 export const kindLabels: Record<Kind, string> = { investigations: 'Investigation', projects: 'Project', articles: 'Writing' };
-export function href(entry: Entry) { return `${roots[entry.collection]}/${entry.id}/`; }
+export function href(entry: Entry) { return 'externalUrl' in entry.data && entry.data.externalUrl ? entry.data.externalUrl : `${roots[entry.collection]}/${entry.id}/`; }
 export function isPublic(entry: Entry) { return !entry.data.draft && entry.data.visibility === 'public'; }
 export function isRoutable(entry: Entry) { return !entry.data.draft && entry.data.visibility !== 'private'; }
 export async function allContent(): Promise<Entry[]> {

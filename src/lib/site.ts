@@ -1,6 +1,6 @@
 export const site = {
   name: 'Ronit Serva',
-  description: 'A living research laboratory. Exploring difficult questions about AI, financial systems and programmable trust.',
+  description: 'Projects and research by Ronit Serva: an A2A/x402 agentic payments learning prototype, a live personal finance app, and writing about the work.',
   linkedin: 'https://www.linkedin.com/in/ronitserva',
   curiosities: [
     { topic: 'Trustworthy autonomy', question: 'How much authority should we give an agent—and how do we take it back?', href: '/explore/agentic-payments-and-trust/' },

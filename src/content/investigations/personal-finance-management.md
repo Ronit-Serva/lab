@@ -27,7 +27,7 @@ Seeing a family member struggle with managing personal finances prompted me to l
 
 I designed a personal-finance management framework and built a web application around it. The aim was to make financial organization easier to understand and use.
 
-The connected project page describes the work so far. Detailed features, screenshots, implementation choices and public access still need to be documented.
+The connected project page describes the work so far. The application is available at [serva-aica.web.app](https://serva-aica.web.app/). Detailed workflows, screenshots and implementation choices will be added to the case study.
 
 ## The questions behind the interface
 

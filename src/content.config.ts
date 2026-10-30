@@ -20,10 +20,10 @@ const investigations = defineCollection({
 });
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
-  schema: shared.extend({ status: z.enum(['Built · self-reported', 'Prototype', 'In development', 'Concept']), stack: z.array(z.string()).default([]), demoUrl: z.url({ protocol: /^https?$/ }).optional(), repoUrl: z.url({ protocol: /^https?$/ }).optional() }),
+  schema: shared.extend({ status: z.enum(['Built · self-reported', 'Prototype', 'In development', 'Concept', 'Learning reimplementation', 'Live app']), stack: z.array(z.string()).default([]), demoUrl: z.url({ protocol: /^https?$/ }).optional(), repoUrl: z.url({ protocol: /^https?$/ }).optional() }),
 });
 const articles = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
-  schema: shared.extend({ type: z.enum(['Research article', 'Essay', 'Field note', 'Build log']), publishedAt: z.iso.date().optional() }),
+  schema: shared.extend({ type: z.enum(['Research article', 'Essay', 'Field note', 'Build log']), publishedAt: z.iso.date().optional(), externalUrl: z.url({ protocol: /^https?$/ }).optional() }),
 });
 export const collections = { investigations, projects, articles };

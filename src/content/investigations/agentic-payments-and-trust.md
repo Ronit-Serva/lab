@@ -1,8 +1,8 @@
 ---
 title: Agentic payments & trust
 question: How can AI agents transact without losing human control?
-summary: Delegated authority, conditional payments, and the difficult question of who verifies delivery.
-status: Researching
+summary: Research, a published article and a local A2A/x402 reimplementation exploring agent payments and human control.
+status: Prototyping
 topics: [AI & Agents, Blockchain & Payments]
 visibility: public
 draft: false
@@ -18,11 +18,17 @@ openQuestions:
 related:
   - collection: projects
     id: agent-payment-architecture
-    reason: The proposed architecture brings authorization, settlement and evaluation into one conceptual workflow.
+    reason: My public learning reimplementation puts agent identity and micropayments into a local prototype.
   - collection: projects
     id: personal-finance-app
     reason: A shared thread—making financial systems useful while keeping people in control.
 references:
+  - title: My A2A + x402 learning reimplementation
+    url: https://github.com/Ronit-Serva/A2A-x402-extension-reimp
+  - title: "Towards Multi-Agent Economies — original research paper"
+    url: https://arxiv.org/abs/2507.19550
+  - title: My published article on blockchain and agentic payments
+    url: https://medium.com/@ronitkumar.serva/how-can-blockchain-be-used-to-design-an-agentic-payment-system-7dffb772e146
   - title: AP2 — official protocol specification
     url: https://ap2-protocol.org/ap2/specification/
   - title: x402 — official project and documentation
@@ -58,4 +64,6 @@ Transaction value, reversibility, subjectivity, urgency and counterparty history
 
 ## What exists so far
 
-The work consists of research and a proposed system design. There is no demonstrated deployed payment network, implemented escrow contract, or validated fraud-prevention result here. The connected architecture page makes the proposal's components and assumptions explicit.
+The work now includes a published article and a public learning reimplementation of a research framework for ledger-based agent identity and x402 payments. The connected project page links the original paper, GitHub repository and local walkthrough.
+
+The implementation runs on a local Hardhat chain with test tokens. It makes payment authorization and settlement concrete while leaving the wider questions of delivery quality, open discovery, escrow and dispute resolution unresolved.
