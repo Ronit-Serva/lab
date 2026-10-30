@@ -1,11 +1,8 @@
 ---
-import '@fontsource/manrope/latin-400.css';
-import '@fontsource/manrope/latin-500.css';
-import '@fontsource/manrope/latin-600.css';
-import '../styles/home.css';
 import { Image } from 'astro:assets';
 import portrait from '../portrait.jpg';
 import PageLayout from '../layouts/PageLayout.astro';
+import GradientField from '../components/GradientField.astro';
 import { publicContent, href } from '../lib/content';
 const investigations = (await publicContent('investigations')).filter(e => e.data.featured);
 const projects = (await publicContent('projects')).filter(e => e.data.featured);
@@ -13,7 +10,7 @@ const articles = (await publicContent('articles')).slice(0, 3);
 ---
 <PageLayout home>
   <section class="home-hero" aria-labelledby="hero-title">
-    <div class="gradient-field" aria-hidden="true"><div class="gradient-colors"></div><div class="gradient-grain"></div></div>
+    <GradientField />
     <div class="hero-guides" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="home-frame hero-content">
       <p class="home-kicker"><span class="live-dot" aria-hidden="true"></span> A personal research lab <span class="hero-edition">Ideas in progress / 001</span></p>
